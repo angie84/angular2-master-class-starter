@@ -13,9 +13,11 @@ import { ContactsDetailComponent } from './contacts-detail/contacts-detail.compo
 import { APP_ROUTES } from '../app/app.routes';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
+import { TabComponent } from './tabs/tab/tab.component';
+import { TabsComponent } from './tabs/tabs/tabs.component';
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent],
+  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, TabComponent, TabsComponent],
   providers: [
     ContactsService,
     {provide:'apiUrl', useValue:'http://localhost:4201/api'}
