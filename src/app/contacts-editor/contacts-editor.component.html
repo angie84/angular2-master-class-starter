@@ -5,7 +5,7 @@
       <md-card-title>{{contact?.name}}</md-card-title>
       <md-card-subtitle>{{contact?.email}}</md-card-subtitle>
     </md-card-title-group>
-    <md-card-content *ngIf="contact">
+    <md-card-content>
       <div fxLayout="column">
         <md-input-container fxFlex>
           <input mdInput placeholder="Name" name="name" [(ngModel)]="contact.name">

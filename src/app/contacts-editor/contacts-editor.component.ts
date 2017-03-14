@@ -10,7 +10,10 @@ import { ContactsService } from '../contacts.service';
   styleUrls: ['./contacts-editor.component.css']
 })
 export class ContactsEditorComponent implements OnInit {
-  contact: Contact;
+  // cant use ?. with ngModel operator so we need to initialize it and typecast it to contact
+  // to avoid typescript error for missing contact properties
+  // or use ngIf with loading template 
+  contact: Contact = <Contact>{ address: {}};
 
   constructor(
     private route: ActivatedRoute,
@@ -25,9 +28,10 @@ export class ContactsEditorComponent implements OnInit {
   }
   save(contact: Contact){
     this.contactsService.updateContact(contact)
-      .subscribe(contact => this.cancel(contact));
+      .subscribe(() => this.cancel());
+      //.subscribe(contact => this.cancel());
   }
-  cancel(contact: Contact) {
+  cancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 }
