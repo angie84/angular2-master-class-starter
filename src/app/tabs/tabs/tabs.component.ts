@@ -7,17 +7,16 @@ import { TabComponent } from '../tab/tab.component';
   styleUrls: ['./tabs.component.css']
 })
 export class TabsComponent implements OnInit {
-  tabs: Array<TabComponent> = [];
+  @ContentChildren(TabComponent)
+  tabs: QueryList<TabComponent>;
 
   constructor() {}
   ngOnInit() {}
-
-  addTab(tab: TabComponent){
-    if (this.tabs.length === 0) {
-      this.select(tab);
-    }
-    this.tabs.push(tab);
+  // ContentChildren sind erst mit ngAfterContentInit da
+  ngAfterContentInit () {
+    this.select(this.tabs.first)
   }
+
   select(tab: TabComponent){
     this.tabs.forEach(currentTab => currentTab.selected = currentTab === tab);
     // this.tabs.forEach(tab => tab.selected = false);
