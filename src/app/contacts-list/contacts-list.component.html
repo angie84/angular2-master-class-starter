@@ -6,7 +6,7 @@
 </md-toolbar>
 
 <md-list>
-  <a md-list-item [routerLink]="['/contacts',contact.id]" *ngFor="let contact of contacts | async; trackBy:trackByContactId">
+  <a md-list-item [routerLink]="['/contacts',contact.id]" routerLinkActive="active" *ngFor="let contact of contacts | async; trackBy:trackByContactId">
     <img md-list-avatar [src]="contact.image" alt="Picture of contact.name">
     <h3 md-line>{{contact.name}}</h3>
   </a>

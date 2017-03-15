@@ -15,6 +15,7 @@ export class TabsComponent implements OnInit {
   // ContentChildren sind erst mit ngAfterContentInit da
   ngAfterContentInit () {
     this.select(this.tabs.first)
+    this.tabs.changes.subscribe(tab => {})
   }
 
   select(tab: TabComponent){

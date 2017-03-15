@@ -9,6 +9,7 @@ import 'rxjs/add/operator/merge';
  
 import { Contact } from './models/contact';
 import { CONTACT_DATA } from './data/contact-data';
+import { API_ENDPOINT } from './app.tokens';
 
 @Injectable()
 export class ContactsService {
@@ -16,7 +17,7 @@ export class ContactsService {
 
   constructor(
     private http: Http,
-    @Inject('apiUrl') private apiUrl
+    @Inject(API_ENDPOINT) private apiUrl
   ) {}
 
   getContacts() {

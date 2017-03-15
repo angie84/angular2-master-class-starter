@@ -13,7 +13,8 @@ export class ContactsEditorComponent implements OnInit {
   // cant use ?. with ngModel operator so we need to initialize it and typecast it to contact
   // to avoid typescript error for missing contact properties
   // or use ngIf with loading template 
-  contact: Contact = <Contact>{ address: {}};
+  contact: Contact;
+  warnOnClosing = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,14 +23,14 @@ export class ContactsEditorComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let id = this.route.snapshot.params['id'];
-    this.contactsService.getContact(id)
-      .subscribe(contact => this.contact = contact);
+    this.route.data
+        .map(data => data['contact'])
+        .subscribe(contact => this.contact = contact);
   }
   save(contact: Contact){
+    this.warnOnClosing = false;
     this.contactsService.updateContact(contact)
       .subscribe(() => this.cancel());
-      //.subscribe(contact => this.cancel());
   }
   cancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
