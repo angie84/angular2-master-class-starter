@@ -1,0 +1,56 @@
+<div class="trm-contacts-creator">
+  <form #createContactForm="ngForm" (ngSubmit)="save(createContactForm.value)" novalidate>
+    <md-card>
+      <md-card-title-group>
+        <img md-card-md-image alt="Placeholder image" src="/assets/images/placeholder.png">
+        <md-card-title></md-card-title>
+        <md-card-subtitle></md-card-subtitle>
+      </md-card-title-group>
+      <md-card-content>
+        <div fxLayout="column">
+          <md-input-container fxFlex [dividerColor]="name.errors ? 'warn' : 'primary'">
+            <input mdInput placeholder="Name" #name="ngModel" name="name" ngModel required minlength="3">  
+            <md-hint align="end" *ngIf="!name?.valid && !name?.pristine">
+              <ng-template [ngIf]="name.errors?.required">Name is required</ng-template>
+              <ng-template [ngIf]="name.errors?.minlength">
+                Name has only {{name?.errors?.minlength.actualLength}} characters,
+                but must have at leat 3 characters.
+              </ng-template>
+            </md-hint>
+          </md-input-container>
+          <md-input-container fxFlex [dividerColor]="email.errors ? 'warn' : 'primary'">
+            <input mdInput placeholder="Email" name="email" #email="ngModel" ngModel trmValidateEmail>
+            <md-hint align="end" *ngIf="!email.valid && !email.pristine">
+              Invalid Email
+            </md-hint>
+          </md-input-container>
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Birthday" name="birthday" type="date" ngModel>
+          </md-input-container>
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Phone" name="phone" ngModel>
+          </md-input-container>
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Website" name="website" ngModel>
+          </md-input-container>
+          <fieldset fxLayout="column" ngModelGroup="address">
+            <legend>Address</legend>
+            <md-input-container fxFlex>
+              <input mdInput placeholder="Street" name="street" ngModel>
+            </md-input-container>
+            <md-input-container fxFlex>
+              <input mdInput placeholder="Zip" name="zip" ngModel>
+            </md-input-container>
+            <md-input-container fxFlex>
+              <input mdInput placeholder="City" name="city" ngModel>
+            </md-input-container>
+          </fieldset>
+        </div>
+      </md-card-content>
+      <md-card-actions fxLayout fxLayoutAlign="center center">
+        <button md-button type="submit" [disabled]="!createContactForm.valid">Save</button>
+        <a md-button routerLink="/" title="Cancel creating new contact">Cancel</a>
+      </md-card-actions>
+    </md-card>
+  </form>
+</div>

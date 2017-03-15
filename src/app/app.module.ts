@@ -19,13 +19,16 @@ import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashbo
 import { API_ENDPOINT } from './app.tokens';
 import { ConfirmDeactivationDialogComponent } from './confirm-deactivation-dialog/confirm-deactivation-dialog.component';
 import { ContactsResolver } from './shared/contacts.resolver';
+import { ContactsCreatorComponent } from './contacts-creator/contacts-creator.component';
+import { EmailValidatorDirective } from './email-validator.directive';
+import { EmailAvailabilityValidatorDirective } from './email-availability-validator.directive';
 
 export function confirmNavigationGuard(component) {
   return !component.warnOnClosing || window.confirm('Navigate away without saving?');
 }
 
 @NgModule({
-  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, TabComponent, TabsComponent, ContactsDashboardComponent, ConfirmDeactivationDialogComponent],
+  declarations: [ContactsAppComponent, ContactsListComponent, ContactsDetailComponent, ContactsEditorComponent, ContactsDetailViewComponent, TabComponent, TabsComponent, ContactsDashboardComponent, ConfirmDeactivationDialogComponent, ContactsCreatorComponent, EmailValidatorDirective, EmailAvailabilityValidatorDirective],
   providers: [
     ContactsService,
     ContactsResolver,

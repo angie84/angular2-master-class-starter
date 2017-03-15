@@ -33,6 +33,14 @@ export class ContactsService {
     return this.http.put(`${this.apiUrl}/contacts/${contact.id}`,contact)
       .map(res => res.json().item);
   }
+  addContact(contact: Contact){
+    return this.http.post(`${this.apiUrl}/contacts`,contact)
+      .map(res => res.json().item);
+  }
+  isEmailAvailable(email){
+    return this.http.get(`${this.apiUrl}/check-email?email=${email}`)
+      .map(res => res.json());
+  }
 
   search(terms: Observable<string>, debounceMs = 400) {
     return Observable.merge(
